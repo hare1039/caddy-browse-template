@@ -18,8 +18,13 @@ function prettyFile(extensions, file) {
     }
 
     var image_str = '';
-    if (file.includes("png"))
-        image_str = '<br /><img src="' + file + '" alt="test" />';
+    if (file.toLowerCase().includes("png") ||
+        file.toLowerCase().includes("jpg") ||
+        file.toLowerCase().includes("svg") ||
+        file.toLowerCase().includes("gif") ||
+        file.toLowerCase().includes("ico")) {
+        image_str = '<br /><img style="max-width:600px;" src="' + file + '" alt="test" />';
+    }
 
     return '<span class="item-searchable '+color_class+'">'+file+'</span>'+image_str;
 }
@@ -139,7 +144,7 @@ $(document).ready(function () {
         $(this).html(breadcrumb($(this).text()));
     });
 
-    $.getJSON('/api/file-type-extensions.json', function(extensions) {
+    $.getJSON('https://js.hare1039.cloudns.cc/api/file-type-extensions.json', function(extensions) {
         $("span.item-file").each(function(i) {
             $(this).html(prettyFile(extensions, $(this).text()));
         });
