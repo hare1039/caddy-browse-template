@@ -16,7 +16,12 @@ function prettyFile(extensions, file) {
             break;
         }
     }
-    return '<span class="item-searchable '+color_class+'">'+file+'</span>';
+
+    var image_str = '';
+    if (file.includes("png"))
+        image_str = '<br /><img src="' + file + '" alt="test" />';
+
+    return '<span class="item-searchable '+color_class+'">'+file+'</span>'+image_str;
 }
 
 function breadcrumb(path) {
@@ -137,7 +142,7 @@ $(document).ready(function () {
     $.getJSON('/api/file-type-extensions.json', function(extensions) {
         $("span.item-file").each(function(i) {
             $(this).html(prettyFile(extensions, $(this).text()));
-	});
+        });
     });
 
     $("span.item-size").each(function(i) {
@@ -172,4 +177,3 @@ $(window).resize(function() {
 $(document).ready(function() {
     $('body').css('padding-top', $('main header').height() + 5);
 });
-

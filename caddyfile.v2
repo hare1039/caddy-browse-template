@@ -3,30 +3,30 @@
         "http": {
             "servers": {
                 "srv0": {
-                    "listen": [":8080"],
+                    "listen": [":4000"],
                     "routes": [
-						{
+                        {
                             "match": [
-								{
+                                {
                                     "host": ["localhost"]
                                 }
                             ],
                             "handle": [
-								{
+                                {
                                     "handler": "subroute",
                                     "routes": [
-										{
+                                        {
                                             "handle": [
-												{
+                                                {
                                                     "handler": "templates"
                                                 },
-												{
+                                                {
                                                     "browse": {
-														"template_file": "template.html"
-													},
+                                                        "template_file": "template.html"
+                                                    },
                                                     "handler": "file_server",
                                                     "hide": [],
-													"root": "./static"
+                                                    "root": "./static"
                                                 }
                                             ]
                                         }
